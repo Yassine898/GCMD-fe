@@ -10,7 +10,7 @@ function App() {
   useEffect(() => {
    // This fetches the initial CSRF cookie when the application loads.
    // This is the correct place for a general CSRF cookie request for the entire SPA session.
-   api.get('/csrf-cookie');
+   api.get('sanctum/csrf-cookie');
 }, []);
   return (
     <>
