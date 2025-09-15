@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, ArrowRight, Loader2, AlertCircle } from 'lucide-react'; // Added Loader2 and AlertCircle
 import api from '../config/api';
 import { useNavigate } from 'react-router';
@@ -29,7 +29,7 @@ export default function SignInForm() {
       await api.get('/csrf-cookie');
 
       // 2. Retrieve the newly set CSRF token from cookies
-      const xsrfToken = Cookies.get('XSRF-TOKEN');
+      let xsrfToken = Cookies.get('XSRF-TOKEN');
       
 
       if (!xsrfToken) {
@@ -179,12 +179,7 @@ export default function SignInForm() {
                 />
                 <span className="ml-2 text-sm text-gray-300">Remember me</span>
               </label>
-              <a
-                href="#"
-                className="text-sm text-purple-300 hover:text-purple-200 transition-colors"
-              >
-                Forgot password?
-              </a>
+              
             </div>
 
             {/* Sign In Button */}
@@ -233,13 +228,7 @@ export default function SignInForm() {
             </button>
           </div>
 
-          {/* Sign Up Link */}
-          <p className="text-center text-gray-300 mt-8">
-            Don't have an account?{' '}
-            <a href="#" className="text-purple-300 hover:text-purple-200 font-semibold transition-colors">
-              Sign up for free
-            </a>
-          </p>
+         
         </div>
 
         {/* Footer */}
