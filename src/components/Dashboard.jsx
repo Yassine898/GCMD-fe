@@ -1,4 +1,4 @@
-import  { useEffect, useState } from 'react';
+import  { useEffect, useState,useCallback } from 'react';
 import {
   Search,
   Filter,
@@ -57,38 +57,35 @@ const Dashboard = () => {
 
   const token = Cookies.get('XSRF-TOKEN')
 
-  const fetchData = async (page = 1) => {
+   const fetchData = useCallback(async (page = 1) => {
     try {
       setLoading(true);
       setError(null);
 
-      // Build query parameters
       const params = new URLSearchParams({
         page: page.toString(),
         per_page: perPage.toString(),
         search: searchTerm,
         sort_field: sortField,
         sort_direction: sortDirection,
-        payment_filter: paymentFilter
+        payment_filter: paymentFilter,
       });
 
       const response = await api.get(`api/members?${params}`);
 
-      // Handle the paginated response structure
       const membersData = response.data.members;
       setUsers(membersData.data || []);
       setCurrentPage(membersData.current_page || 1);
       setLastPage(membersData.last_page || 1);
       setPerPage(membersData.per_page || 10);
       setTotal(membersData.total || 0);
-
     } catch (err) {
       setError(err.message);
       console.error('Error fetching users:', err);
     } finally {
       setLoading(false);
     }
-  };
+  }, [perPage, searchTerm, sortField, sortDirection, paymentFilter]);
 
   useEffect(() => {
     fetchData(currentPage);
