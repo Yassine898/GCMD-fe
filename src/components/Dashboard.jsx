@@ -92,7 +92,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchData(currentPage);
-  }, [currentPage, perPage, searchTerm, sortField, sortDirection, paymentFilter,fetchData]);
+  }, [currentPage, perPage, searchTerm, sortField, sortDirection, paymentFilter]);
 
   // Reset to first page when filters change
   useEffect(() => {
@@ -101,7 +101,7 @@ const Dashboard = () => {
     } else {
       fetchData(1);
     }
-  }, [searchTerm, sortField, sortDirection, paymentFilter,fetchData,currentPage]);
+  }, [searchTerm, sortField, sortDirection, paymentFilter,currentPage]);
 
   // Progress bar animation for single delete
   useEffect(() => {
