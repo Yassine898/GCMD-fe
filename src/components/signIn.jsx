@@ -26,7 +26,7 @@ export default function SignInForm() {
     try {
       // 1. Get a fresh CSRF cookie
       // This is crucial, especially after logout or on first visit.
-      await api.get('/csrf-cookie');
+      await api.get('sanctum/csrf-cookie');
 
       // 2. Retrieve the newly set CSRF token from cookies
       let xsrfToken = Cookies.get('XSRF-TOKEN');
