@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import {
   Search,
   Filter,
@@ -92,7 +92,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchData(currentPage);
-  }, [currentPage, perPage, searchTerm, sortField, sortDirection, paymentFilter]);
+  }, [currentPage, perPage, searchTerm, sortField, sortDirection, paymentFilter,fetchData]);
 
   // Reset to first page when filters change
   useEffect(() => {
@@ -101,7 +101,7 @@ const Dashboard = () => {
     } else {
       fetchData(1);
     }
-  }, [searchTerm, sortField, sortDirection, paymentFilter]);
+  }, [searchTerm, sortField, sortDirection, paymentFilter,fetchData,currentPage]);
 
   // Progress bar animation for single delete
   useEffect(() => {
