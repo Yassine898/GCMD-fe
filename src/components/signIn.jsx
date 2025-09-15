@@ -53,14 +53,6 @@ export default function SignInForm() {
           // If your Laravel backend uses `remember` me, include it here
           remember: rememberMe
         },
-        {
-          headers: {
-            'X-XSRF-TOKEN': decodeURIComponent(xsrfToken), // Use the newly obtained token
-            'Content-Type': 'application/json', // Explicitly set content type
-            'Accept': 'application/json' // Request JSON response
-          },
-          withCredentials: true // Important for sending/receiving session cookies
-        }
       );
 
       // If login is successful, navigate to dashboard
