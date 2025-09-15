@@ -79,7 +79,7 @@ const AddMemberForm = ({ onClose, onSuccess }) => {
 
     // Phone validation (optional but if provided, must be valid)
     if (formData.phone && formData.phone.trim()) {
-      const phoneRegex = /^\+?[\d\s\-\(\)]{10,}$/;
+      const phoneRegex = /^\+?[\d\s]{10,}$/;
       if (!phoneRegex.test(formData.phone.trim())) {
         newErrors.phone = 'Please enter a valid phone number';
       }
