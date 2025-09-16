@@ -16,7 +16,9 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<SignInForm/>}/>
+          <Route path='/' >
+    <Route path='login' index element={<SignInForm/>} />
+    </Route>
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/member-details/:id' element={<MemberDetails/>}/>
         </Routes>
