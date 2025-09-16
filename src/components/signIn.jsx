@@ -29,7 +29,7 @@ export default function SignInForm() {
       // This is crucial, especially after logout or on first visit.
       
  await api.get('sanctum/csrf-cookie');
-      const response = await api.post('/login', {
+      const response = await api.post('api/login', {
           email,
           password,
           // If your Laravel backend uses `remember` me, include it here
