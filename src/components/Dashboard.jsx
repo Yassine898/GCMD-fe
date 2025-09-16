@@ -301,7 +301,7 @@ const Dashboard = () => {
       // Clear the XSRF token cookie and any other local auth state
       Cookies.remove('XSRF-TOKEN');
       // Redirect to login page or home page
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       console.error('Logout failed:', error);
       // Even if logout API call fails, clear local state and redirect for security
