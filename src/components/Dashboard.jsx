@@ -413,20 +413,21 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-3 md:p-6 bg-gray-50 min-h-screen">
       {/* NEW: Dashboard Header with Logout */}
-      <div className="bg-white shadow-sm border-b border-gray-200 mb-6">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="bg-white shadow-sm border-b border-gray-200 mb-4 md:mb-6">
+        <div className="max-w-7xl mx-auto px-3 md:px-6 py-3 md:py-4 flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Users className="w-6 h-6 text-blue-600" />
-            <h1 className="text-xl font-bold text-gray-900">Member Dashboard</h1>
+            <Users className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
+            <h1 className="text-lg md:text-xl font-bold text-gray-900">Member Dashboard</h1>
           </div>
           <button
             onClick={handleLogout}
-            className="flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
+            className="flex items-center px-3 md:px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm md:text-base"
           >
-            <LogOut className="w-4 h-4 mr-2" />
-            Logout
+            <LogOut className="w-4 h-4 mr-1 md:mr-2" />
+            <span className="hidden sm:inline">Logout</span>
+            <span className="sm:hidden">Out</span>
           </button>
         </div>
       </div>
@@ -446,19 +447,19 @@ const Dashboard = () => {
 
         {/* Success/Error Message */}
         {deleteMessage && (
-          <div className={`fixed top-4 right-4 z-50 max-w-md rounded-lg shadow-lg border p-4 ${
+          <div className={`fixed top-4 right-4 z-50 max-w-xs md:max-w-md rounded-lg shadow-lg border p-3 md:p-4 ${
             deleteMessage.type === 'success'
               ? 'bg-green-50 border-green-200'
               : 'bg-red-50 border-red-200'
           }`}>
             <div className="flex items-center">
               {deleteMessage.type === 'success' ? (
-                <CheckCircle className="w-5 h-5 text-green-600 mr-3" />
+                <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-green-600 mr-2 md:mr-3 flex-shrink-0" />
               ) : (
-                <XCircle className="w-5 h-5 text-red-600 mr-3" />
+                <XCircle className="w-4 h-4 md:w-5 md:h-5 text-red-600 mr-2 md:mr-3 flex-shrink-0" />
               )}
-              <div className="flex-1">
-                <p className={`text-sm font-medium ${
+              <div className="flex-1 min-w-0">
+                <p className={`text-xs md:text-sm font-medium ${
                   deleteMessage.type === 'success' ? 'text-green-800' : 'text-red-800'
                 }`}>
                   {deleteMessage.text}
@@ -466,55 +467,56 @@ const Dashboard = () => {
               </div>
               <button
                 onClick={dismissMessage}
-                className={`ml-3 p-1 rounded-full hover:bg-opacity-20 ${
+                className={`ml-2 md:ml-3 p-1 rounded-full hover:bg-opacity-20 flex-shrink-0 ${
                   deleteMessage.type === 'success'
                     ? 'hover:bg-green-600 text-green-600'
                     : 'hover:bg-red-600 text-red-600'
                 }`}
               >
-                <X className="w-4 h-4" />
+                <X className="w-3 h-3 md:w-4 md:h-4" />
               </button>
             </div>
           </div>
         )}
 
-        {/* Main Content Header (Original header content moved here) */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <div className="flex items-center justify-between">
+        {/* Main Content Header */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 mb-4 md:mb-6">
+          <div className="px-3 md:px-6 py-3 md:py-4 border-b border-gray-200">
+            <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row md:items-center md:justify-between">
               <div className="flex items-center space-x-3">
                 <div className="p-2 bg-blue-100 rounded-lg">
-                  <Users className="w-6 h-6 text-blue-600" />
+                  <Users className="w-5 h-5 md:w-6 md:h-6 text-blue-600" />
                 </div>
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">Members List</h1> {/* Changed title to avoid redundancy with new top header */}
-                  <p className="text-sm text-gray-500">Manage your members and their monthly payments</p>
+                  <h1 className="text-xl md:text-2xl font-bold text-gray-900">Members List</h1>
+                  <p className="text-xs md:text-sm text-gray-500">Manage your members and their monthly payments</p>
                 </div>
               </div>
-              <div className="flex items-center space-x-3">
-                <button className="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
-                  <Download className="w-4 h-4 mr-2" />
-                  Export
+              <div className="flex items-center space-x-2 md:space-x-3">
+                <button className="flex items-center px-2 md:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-xs md:text-sm">
+                  <Download className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+                  <span className="hidden sm:inline">Export</span>
                 </button>
-                <button className="flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
-                  <Upload className="w-4 h-4 mr-2" />
-                  Import
+                <button className="flex items-center px-2 md:px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-xs md:text-sm">
+                  <Upload className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+                  <span className="hidden sm:inline">Import</span>
                 </button>
                 <button
                   onClick={() => setShowAddForm(true)}
-                  className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                  className="flex items-center px-2 md:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-xs md:text-sm"
                 >
-                  <Plus className="w-4 h-4 mr-2" />
-                  Add Member
+                  <Plus className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+                  <span className="hidden sm:inline">Add Member</span>
+                  <span className="sm:hidden">Add</span>
                 </button>
               </div>
             </div>
           </div>
 
           {/* Search and Filters */}
-          <div className="px-6 py-4">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center space-x-4">
+          <div className="px-3 md:px-6 py-3 md:py-4">
+            <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row md:items-center md:justify-between mb-4">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
                 <div className="relative">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <input
@@ -522,38 +524,40 @@ const Dashboard = () => {
                     placeholder="Search members..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64"
+                    className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent w-full sm:w-64"
                   />
                 </div>
-                <button
-                  onClick={() => setShowFilters(!showFilters)}
-                  className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <Filter className="w-4 h-4 mr-2" />
-                  Filters
-                </button>
-                <button
-                  onClick={() => fetchData(currentPage)}
-                  className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <RefreshCw className="w-4 h-4 text-gray-600" />
-                </button>
+                <div className="flex space-x-2">
+                  <button
+                    onClick={() => setShowFilters(!showFilters)}
+                    className="flex items-center px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm"
+                  >
+                    <Filter className="w-4 h-4 mr-2" />
+                    Filters
+                  </button>
+                  <button
+                    onClick={() => fetchData(currentPage)}
+                    className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
+                    <RefreshCw className="w-4 h-4 text-gray-600" />
+                  </button>
+                </div>
               </div>
 
               {selectedUsers.length > 0 && (
-                <div className="flex items-center space-x-3">
-                  <span className="text-sm text-gray-600">
+                <div className="flex items-center justify-between sm:justify-end space-x-3 bg-blue-50 p-2 rounded-lg">
+                  <span className="text-sm text-gray-600 flex-grow sm:flex-grow-0">
                     {selectedUsers.length} selected
                   </span>
                   <button
                     onClick={confirmBulkDelete}
                     disabled={isBulkDeleting}
-                    className="flex items-center px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="flex items-center px-3 md:px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-xs md:text-sm"
                   >
                     {isBulkDeleting ? (
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      <Loader2 className="w-4 h-4 mr-1 md:mr-2 animate-spin" />
                     ) : (
-                      <Trash2 className="w-4 h-4 mr-2" />
+                      <Trash2 className="w-4 h-4 mr-1 md:mr-2" />
                     )}
                     {isBulkDeleting ? 'Deleting...' : 'Delete Selected'}
                   </button>
@@ -563,13 +567,13 @@ const Dashboard = () => {
 
             {/* Filter Controls */}
             {showFilters && (
-              <div className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
-                <div className="flex items-center space-x-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 p-3 md:p-4 bg-gray-50 rounded-lg">
+                <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-2">
                   <label className="text-sm font-medium text-gray-700">Payment Tier:</label>
                   <select
                     value={paymentFilter}
                     onChange={(e) => setPaymentFilter(e.target.value)}
-                    className="px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                   >
                     <option value="all">All Tiers</option>
                     <option value="premium">Premium ($100+)</option>
@@ -578,12 +582,12 @@ const Dashboard = () => {
                     <option value="unpaid">Unpaid ($0)</option>
                   </select>
                 </div>
-                <div className="flex items-center space-x-2">
+                <div className="flex flex-col sm:flex-row sm:items-center space-y-1 sm:space-y-0 sm:space-x-2">
                   <label className="text-sm font-medium text-gray-700">Per Page:</label>
                   <select
                     value={perPage}
                     onChange={(e) => handlePerPageChange(Number(e.target.value))}
-                    className="px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="px-3 py-1 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
                   >
                     <option value="10">10</option>
                     <option value="25">25</option>
@@ -599,10 +603,10 @@ const Dashboard = () => {
         {/* Table */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="w-full min-w-full">
               <thead className="bg-gray-50">
                 <tr>
-                  <th className="px-6 py-3 text-left">
+                  <th className="px-3 md:px-6 py-3 text-left">
                     <input
                       type="checkbox"
                       checked={selectedUsers.length === users.length && users.length > 0}
@@ -611,16 +615,17 @@ const Dashboard = () => {
                     />
                   </th>
                   <th
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                    className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                     onClick={() => handleSort('name')}
                   >
                     <div className="flex items-center">
-                      Member
+                      <span className="hidden sm:inline">Member</span>
+                      <span className="sm:hidden">Name</span>
                       <SortIcon field="name" />
                     </div>
                   </th>
                   <th
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                    className="hidden md:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                     onClick={() => handleSort('email')}
                   >
                     <div className="flex items-center">
@@ -629,19 +634,20 @@ const Dashboard = () => {
                     </div>
                   </th>
                   <th
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                    className="px-3 md:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                     onClick={() => handleSort('money_paid_monthly')}
                   >
                     <div className="flex items-center">
-                      Monthly Payment
+                      <span className="hidden sm:inline">Monthly Payment</span>
+                      <span className="sm:hidden">Payment</span>
                       <SortIcon field="money_paid_monthly" />
                     </div>
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="hidden lg:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Payment Status
                   </th>
                   <th
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
+                    className="hidden xl:table-cell px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                     onClick={() => handleSort('created_at')}
                   >
                     <div className="flex items-center">
@@ -649,7 +655,7 @@ const Dashboard = () => {
                       <SortIcon field="created_at" />
                     </div>
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  <th className="px-3 md:px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
@@ -657,36 +663,36 @@ const Dashboard = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {loading ? (
                   <tr>
-                    <td colSpan="7" className="px-6 py-12 text-center">
+                    <td colSpan="7" className="px-3 md:px-6 py-12 text-center">
                       <div className="flex items-center justify-center">
-                        <Loader2 className="h-8 w-8 animate-spin text-blue-500 mr-3" />
-                        <span className="text-gray-500">Loading members...</span>
+                        <Loader2 className="h-6 w-6 md:h-8 md:w-8 animate-spin text-blue-500 mr-3" />
+                        <span className="text-sm md:text-base text-gray-500">Loading members...</span>
                       </div>
                     </td>
                   </tr>
                 ) : error ? (
                   <tr>
-                    <td colSpan="7" className="px-6 py-12 text-center">
+                    <td colSpan="7" className="px-3 md:px-6 py-12 text-center">
                       <div className="text-red-500">
-                        <p className="font-medium">Error loading members</p>
-                        <p className="text-sm">{error}</p>
+                        <p className="font-medium text-sm md:text-base">Error loading members</p>
+                        <p className="text-xs md:text-sm">{error}</p>
                       </div>
                     </td>
                   </tr>
                 ) : users.length === 0 ? (
                   <tr>
-                    <td colSpan="7" className="px-6 py-12 text-center">
+                    <td colSpan="7" className="px-3 md:px-6 py-12 text-center">
                       <div className="text-gray-500">
-                        <Users className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-                        <p className="font-medium">No members found</p>
-                        <p className="text-sm">Get started by adding your first member.</p>
+                        <Users className="h-10 w-10 md:h-12 md:w-12 mx-auto mb-4 text-gray-300" />
+                        <p className="font-medium text-sm md:text-base">No members found</p>
+                        <p className="text-xs md:text-sm">Get started by adding your first member.</p>
                       </div>
                     </td>
                   </tr>
                 ) : (
                   users.map((user) => (
                     <tr key={user.id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 md:px-6 py-4 whitespace-nowrap">
                         <input
                           type="checkbox"
                           checked={selectedUsers.includes(user.id)}
@@ -694,55 +700,62 @@ const Dashboard = () => {
                           className="w-4 h-4 text-blue-600 rounded focus:ring-blue-500"
                         />
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 md:px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
-                          <div className="flex-shrink-0 h-10 w-10">
-                            <div className="h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center">
-                              <span className="text-sm font-medium text-blue-600">
+                          <div className="flex-shrink-0 h-8 w-8 md:h-10 md:w-10">
+                            <div className="h-8 w-8 md:h-10 md:w-10 rounded-full bg-blue-100 flex items-center justify-center">
+                              <span className="text-xs md:text-sm font-medium text-blue-600">
                                 {getInitials(user.first_name, user.last_name)}
                               </span>
                             </div>
                           </div>
-                          <div className="ml-4">
+                          <div className="ml-3 md:ml-4">
                             <div className="text-sm font-medium text-gray-900">
                               {user.first_name} {user.last_name}
                             </div>
-                            <div className="text-sm text-gray-500">Member ID: {user.id}</div>
+                            <div className="text-xs text-gray-500 md:hidden">{user.email}</div>
+                            <div className="text-xs text-gray-500">ID: {user.id}</div>
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="hidden md:table-cell px-6 py-4 whitespace-nowrap">
                         <div className="text-sm text-gray-900">{user.email}</div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <DollarSign className="w-4 h-4 text-green-600 mr-1" />
-                          <span className="text-sm font-medium text-gray-900">
-                            {formatCurrency(user.money_paid_monthly || 0)}
-                          </span>
+                      <td className="px-3 md:px-6 py-4 whitespace-nowrap">
+                        <div className="flex flex-col sm:flex-row sm:items-center">
+                          <div className="flex items-center">
+                            <DollarSign className="w-3 h-3 md:w-4 md:h-4 text-green-600 mr-1" />
+                            <span className="text-xs md:text-sm font-medium text-gray-900">
+                              {formatCurrency(user.money_paid_monthly || 0)}
+                            </span>
+                          </div>
+                          <div className="lg:hidden mt-1 sm:mt-0 sm:ml-2">
+                            <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getPaymentStatusColor(user.money_paid_monthly || 0)}`}>
+                              {getPaymentStatus(user.money_paid_monthly || 0)}
+                            </span>
+                          </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="hidden lg:table-cell px-6 py-4 whitespace-nowrap">
                         <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getPaymentStatusColor(user.money_paid_monthly || 0)}`}>
                           {getPaymentStatus(user.money_paid_monthly || 0)}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="hidden xl:table-cell px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                         {user.created_at ? formatDate(user.created_at) : 'N/A'}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div className="flex items-center justify-end space-x-2">
+                      <td className="px-3 md:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                        <div className="flex items-center justify-end space-x-1 md:space-x-2">
                           <button onClick={(e)=>{e.preventDefault();
-                          // Use backticks for template literal string for cleaner URL
-                          navigate(`/member-details/${user.id}`); // Assuming `id` is the correct parameter for details page
+                          navigate(`/member-details/${user.id}`);
                           }} className="text-blue-600 hover:text-blue-900 p-1 rounded">
-                            <Eye className="w-4 h-4" />
+                            <Eye className="w-3 h-3 md:w-4 md:h-4" />
                           </button>
-                          <button className="text-gray-600 hover:text-gray-900 p-1 rounded">
-                            <Edit3 className="w-4 h-4" />
+                          <button className="hidden sm:block text-gray-600 hover:text-gray-900 p-1 rounded">
+                            <Edit3 className="w-3 h-3 md:w-4 md:h-4" />
                           </button>
-                          <button className="text-gray-600 hover:text-gray-900 p-1 rounded">
-                            <Mail className="w-4 h-4" />
+                          <button className="hidden sm:block text-gray-600 hover:text-gray-900 p-1 rounded">
+                            <Mail className="w-3 h-3 md:w-4 md:h-4" />
                           </button>
                           <button
                             onClick={(e) => {
@@ -753,9 +766,9 @@ const Dashboard = () => {
                             className="text-red-600 hover:text-red-900 p-1 rounded disabled:opacity-50 disabled:cursor-not-allowed"
                           >
                             {isDeleting ? (
-                              <Loader2 className="w-4 h-4 animate-spin" />
+                              <Loader2 className="w-3 h-3 md:w-4 md:h-4 animate-spin" />
                             ) : (
-                              <Trash2 className="w-4 h-4" />
+                              <Trash2 className="w-3 h-3 md:w-4 md:h-4" />
                             )}
                           </button>
                         </div>
@@ -769,9 +782,9 @@ const Dashboard = () => {
         </div>
 
          {/* Pagination */}
-        <div className="bg-white px-6 py-4 border-t border-gray-200 rounded-b-lg">
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-gray-700">
+        <div className="bg-white px-3 md:px-6 py-3 md:py-4 border-t border-gray-200 rounded-b-lg">
+          <div className="flex flex-col space-y-3 sm:space-y-0 sm:flex-row sm:items-center sm:justify-between">
+            <div className="text-xs md:text-sm text-gray-700 text-center sm:text-left">
               Showing{' '}
               <span className="font-medium">
                 {users.length === 0 ? 0 : ((currentPage - 1) * perPage) + 1}
@@ -784,27 +797,38 @@ const Dashboard = () => {
               <span className="font-medium">{total}</span>{' '}
               results
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center justify-center sm:justify-end space-x-1 md:space-x-2">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="flex items-center px-3 py-2 text-sm text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="flex items-center px-2 md:px-3 py-1 md:py-2 text-xs md:text-sm text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-300 rounded-lg hover:bg-gray-50"
               >
-                <ChevronLeft className="w-4 h-4 mr-1" />
-                Previous
+                <ChevronLeft className="w-3 h-3 md:w-4 md:h-4 mr-1" />
+                <span className="hidden sm:inline">Previous</span>
+                <span className="sm:hidden">Prev</span>
               </button>
 
-              {generatePaginationButtons()}
+              <div className="hidden sm:flex">
+                {generatePaginationButtons()}
+              </div>
 
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === lastPage}
-                className="flex items-center px-3 py-2 text-sm text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-300 rounded-lg hover:bg-gray-50"
+                className="flex items-center px-2 md:px-3 py-1 md:py-2 text-xs md:text-sm text-gray-500 hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed border border-gray-300 rounded-lg hover:bg-gray-50"
               >
-                Next
-                <ChevronRight className="w-4 h-4 ml-1" />
+                <span className="hidden sm:inline">Next</span>
+                <span className="sm:hidden">Next</span>
+                <ChevronRight className="w-3 h-3 md:w-4 md:h-4 ml-1" />
               </button>
             </div>
+          </div>
+          
+          {/* Mobile page indicator */}
+          <div className="sm:hidden text-center mt-2">
+            <span className="text-xs text-gray-500">
+              Page {currentPage} of {lastPage}
+            </span>
           </div>
         </div>
       </div>
