@@ -28,7 +28,7 @@ export default function SignInForm() {
       // 1. Get a fresh CSRF cookie
       // This is crucial, especially after logout or on first visit.
       
-await api.get('sanctum/')
+ await api.get('sanctum/csrf-cookie');
       const response = await api.post('/login', {
           email,
           password,
