@@ -182,7 +182,7 @@ const AddMemberForm = ({ onClose, onSuccess }) => {
       console.log('Submitting member data:', memberData);
 
       // Get CSRF token and make request
-      await api.get('/csrf-cookie');
+      await api.get('sanctum/csrf-cookie');
 
       const token = Cookies.get('XSRF-TOKEN');
       if (!token) {
