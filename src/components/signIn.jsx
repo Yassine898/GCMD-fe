@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, ArrowRight, Loader2, AlertCircle } from 'lucide-react'; // Added Loader2 and AlertCircle
 import api from '../config/api';
 import { useNavigate } from 'react-router';
+import Cookies from 'js-cookie';
 
 export default function SignInForm() {
   const [email, setEmail] = useState('');
