@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, ArrowRight, Loader2, AlertCircle } from 'lucide-react'; // Added Loader2 and AlertCircle
 import api from '../config/api';
 import { useNavigate } from 'react-router';
-import Cookies from 'js-cookie';
+
 
 export default function SignInForm() {
   const [email, setEmail] = useState('');
@@ -27,22 +27,14 @@ export default function SignInForm() {
       
       // 1. Get a fresh CSRF cookie
       // This is crucial, especially after logout or on first visit.
-      const token = Cookies.get('XSRF-TOKEN');
-      if (!token) {
-        throw new Error('CSRF token not found');
-      }
-
+      
+await api.get('sanctum/')
       const response = await api.post('/login', {
           email,
           password,
           // If your Laravel backend uses `remember` me, include it here
           remember: rememberMe
-      }, {
-        headers: {
-          'X-XSRF-TOKEN': decodeURIComponent(token),
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }});
+      });
      
 
     
