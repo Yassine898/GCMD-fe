@@ -32,7 +32,8 @@ export default function SignInForm() {
         throw new Error('CSRF token not found');
       }
 
-      const response = await api.post('/login', {email,
+      const response = await api.post('/login', {
+          email,
           password,
           // If your Laravel backend uses `remember` me, include it here
           remember: rememberMe
@@ -41,7 +42,7 @@ export default function SignInForm() {
           'X-XSRF-TOKEN': decodeURIComponent(token),
           'Content-Type': 'application/json',
           'Accept': 'application/json'
-        });
+        }});
      
 
     
