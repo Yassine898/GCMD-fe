@@ -184,18 +184,9 @@ const AddMemberForm = ({ onClose, onSuccess }) => {
       // Get CSRF token and make request
       await api.get('sanctum/csrf-cookie');
 
-      const token = Cookies.get('XSRF-TOKEN');
-      if (!token) {
-        throw new Error('CSRF token not found');
-      }
+     
 
-      const response = await api.post('/api/members/store', memberData, {
-        headers: {
-          'X-XSRF-TOKEN': decodeURIComponent(token),
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-      });
+      const response = await api.post('/api/members/store', memberData);
 
       console.log('API Response:', response);
 
