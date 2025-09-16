@@ -39,20 +39,7 @@ const xsrfToken = getCookie("XSRF-TOKEN");
 console.log(xsrfToken);
 
       // 2. Retrieve the newly set CSRF token from cookies
-      let xsrfToken = Cookies.get('XSRF-TOKEN');
-      
-
-      if (!xsrfToken) {
-        const cookies = document.cookie.split(';');
-        for (let cookie of cookies) {
-          const [name, value] = cookie.trim().split('=');
-          if (name === 'XSRF-TOKEN') {
-            xsrfToken = decodeURIComponent(value);
-            break;
-          }
-        }
-      }
-      console.log(xsrfToken);
+     
 
       // 3. Attempt to log in
       const response = await api.post(
