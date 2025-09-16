@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { BrowserRouter, Route, Routes ,Navigate } from 'react-router';
 import './App.css';
 import SignInForm from './components/signIn.jsx';
 import api from './config/api.jsx';
@@ -16,9 +16,8 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' >
-    <Route path='login' index element={<SignInForm/>} />
-    </Route>
+           <Route path="/" element={<Navigate to="/login" replace />} />
+    <Route path="/login" element={<SignInForm />} />
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/member-details/:id' element={<MemberDetails/>}/>
         </Routes>
