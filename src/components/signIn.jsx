@@ -27,31 +27,25 @@ export default function SignInForm() {
       
       // 1. Get a fresh CSRF cookie
       // This is crucial, especially after logout or on first visit.
-      await api.get('sanctum/csrf-cookie');
-      function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-  return null;
-}
+      const token = Cookies.get('XSRF-TOKEN');
+      if (!token) {
+        throw new Error('CSRF token not found');
+      }
 
-const xsrfToken = getCookie("XSRF-TOKEN");
-console.log(xsrfToken);
-
-      // 2. Retrieve the newly set CSRF token from cookies
-     
-
-      // 3. Attempt to log in
-      const response = await api.post(
-        '/login',
-        {
-          email,
+      const response = await api.post('/login', {email,
           password,
           // If your Laravel backend uses `remember` me, include it here
           remember: rememberMe
-        },
-      );
+      }, {
+        headers: {
+          'X-XSRF-TOKEN': decodeURIComponent(token),
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        });
+     
 
+    
+     
       // If login is successful, navigate to dashboard
       // You might also want to check `response.data.message` or similar from your API
       console.log('Login successful:', response.data);
