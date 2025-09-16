@@ -9,7 +9,7 @@ import {
   Loader2,
 } from 'lucide-react';
 import api from '../config/api';
-import Cookies from 'js-cookie';
+//import Cookies from 'js-cookie';
 
 const AddMemberForm = ({ onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
